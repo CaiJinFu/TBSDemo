@@ -277,3 +277,5 @@ android:networkSecurityConfig="@xml/network_security_config"
 ```
 
 由于内核初始化需要时间，在这段时间里需要等待一会再打开文件浏览，否则会加载失败。假如出现加载失败，卸载重新安装。
+
+[集成Demo地址](https://github.com/CaiJinFu/TBSDemo.git)
