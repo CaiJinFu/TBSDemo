@@ -278,4 +278,9 @@ android:networkSecurityConfig="@xml/network_security_config"
 
 由于内核初始化需要时间，在这段时间里需要等待一会再打开文件浏览，否则会加载失败。假如出现加载失败，卸载重新安装。
 
+#### R8打包，无法加载
+使用R8打包的时候，发现虽然下载成功了，但是加载却是失败的。果断关闭了。
+
 [集成Demo地址](https://github.com/CaiJinFu/TBSDemo.git)
+
+欢迎订阅[我的博客](https://blog.csdn.net/Mr_JingFu)，坚持总是会看到希望的。
