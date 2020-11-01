@@ -41,10 +41,10 @@ android {
 dependencies {
   implementation fileTree(dir: "libs", include: ["*.jar"])
   implementation 'androidx.appcompat:appcompat:1.2.0'
-  implementation 'androidx.constraintlayout:constraintlayout:2.0.1'
+  implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
   testImplementation 'junit:junit:4.13'
   androidTestImplementation 'androidx.test.ext:junit:1.1.2'
   androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
   //腾讯X5浏览器内核
-  implementation 'com.tencent.tbs.tbssdk:sdk:43939'
+  implementation 'com.tencent.tbs.tbssdk:sdk:43967'
 }
