@@ -22,7 +22,7 @@ public class WebActivity extends BaseWebActivity {
     setWebSettings();
     mWebSettings.setJavaScriptEnabled(true);
     // WebView加载web资源
-    loadUrl("https://www.pianshen.com/article/3463125421/");
+    loadUrl("http://debugtbs.qq.com");
   }
 
   private void initView() {

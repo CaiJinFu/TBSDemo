@@ -12,17 +12,31 @@ android {
     versionName "1.0"
     multiDexEnabled true
     testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
-    ndk {
-      // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
-      abiFilters "armeabi-v7a", "x86"
-    }
   }
 
   buildTypes {
+    debug {
+      def isMinify = true
+      minifyEnabled isMinify
+      zipAlignEnabled isMinify
+      shrinkResources isMinify
+      proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      ndk {
+        // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
+        abiFilters "armeabi-v7a"
+      }
+    }
 
     release {
-      minifyEnabled false
+      def isMinify = true
+      minifyEnabled isMinify
+      zipAlignEnabled isMinify
+      shrinkResources isMinify
       proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+      ndk {
+        // 指定要ndk需要兼容的架构(这样其他依赖包里mips,x86,armeabi,arm-v8之类的so会被过滤掉)
+        abiFilters "armeabi-v7a"
+      }
     }
   }
   sourceSets {
