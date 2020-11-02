@@ -2,6 +2,7 @@ package com.jackfruit.tbsdemo;
 
 import android.app.Application;
 import android.util.Log;
+import android.widget.Toast;
 import com.tencent.smtt.export.external.TbsCoreSettings;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.TbsListener;
@@ -25,7 +26,7 @@ public class App extends Application {
   }
 
   public void initTBS() {
-    HashMap<String, Object> map = new HashMap();
+    HashMap map = new HashMap();
     map.put(TbsCoreSettings.TBS_SETTINGS_USE_SPEEDY_CLASSLOADER, true);
     map.put(TbsCoreSettings.TBS_SETTINGS_USE_DEXLOADER_SERVICE, true);
     QbSdk.initTbsSettings(map);
@@ -55,6 +56,7 @@ public class App extends Application {
           public void onViewInitFinished(boolean arg0) {
             // x5內核初始化完成的回调，true表x5内核加载成功，否则表加载失败，会自动切换到系统内核。
             Log.d("QbSdk", " 内核加载 " + arg0);
+            Toast.makeText(App.this, " 内核加载 " + arg0, Toast.LENGTH_SHORT).show();
           }
 
           @Override
@@ -63,5 +65,7 @@ public class App extends Application {
 
     // x5内核初始化接口
     QbSdk.initX5Environment(getApplicationContext(), cb);
+    Log.i("QbSdk", "是否可以加载X5内核: " + QbSdk.canLoadX5(this));
+    Log.i("QbSdk", "app是否主动禁用了X5内核: " + QbSdk.getIsSysWebViewForcedByOuter());
   }
 }
