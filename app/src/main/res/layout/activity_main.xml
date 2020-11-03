@@ -10,12 +10,23 @@
   >
 
   <TextView
-    android:id="@+id/tv"
+    android:id="@+id/tv4"
     android:layout_width="100dp"
     android:layout_height="50dp"
     android:background="@color/colorAccent"
     android:gravity="center"
-    android:text="打开文件"
+    android:text="在app内部打开文件"
+    android:textColor="@android:color/white"
+    />
+
+  <TextView
+    android:layout_marginTop="10dp"
+    android:id="@+id/tv5"
+    android:layout_width="100dp"
+    android:layout_height="50dp"
+    android:background="@color/colorAccent"
+    android:gravity="center"
+    android:text="通过qq浏览器等打开文件"
     android:textColor="@android:color/white"
     />
 

@@ -1,68 +1,48 @@
 package com.jackfruit.tbsdemo;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Environment;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import com.tencent.smtt.sdk.QbSdk;
 import com.tencent.smtt.sdk.ValueCallback;
-import java.io.File;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
   private TextView mTv;
   private TextView mTv2;
   private TextView mTv3;
-
-  public static File createDocumentsFile(Context context) {
-    File file;
-    if (isSdCardAvailable()) {
-      // /sdcard/Android/data/<application package>/files/Download
-      file = context.getExternalFilesDir(Environment.DIRECTORY_DOCUMENTS);
-    } else {
-      // /data/data/<application package>/files
-      file = context.getFilesDir();
-    }
-    if (!file.exists()) {
-      file.mkdirs();
-    }
-    return file;
-  }
-
-  /**
-   * SdCard是否存在
-   *
-   * @return true存在
-   */
-  public static boolean isSdCardAvailable() {
-    return Environment.MEDIA_MOUNTED.equals(Environment.getExternalStorageState());
-  }
+  private TextView mTv4;
 
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
     setContentView(R.layout.activity_main);
     initView();
-    createDocumentsFile(this);
+    FileUtils.createDocumentsFile(this);
   }
 
   private void initView() {
-    mTv = (TextView) findViewById(R.id.tv);
+    mTv = (TextView) findViewById(R.id.tv5);
     mTv.setOnClickListener(this);
     mTv2 = (TextView) findViewById(R.id.tv2);
     mTv2.setOnClickListener(this);
     mTv3 = (TextView) findViewById(R.id.tv3);
     mTv3.setOnClickListener(this);
+    mTv4 = (TextView) findViewById(R.id.tv4);
+    mTv4.setOnClickListener(this);
   }
 
   @Override
   public void onClick(View v) {
     switch (v.getId()) {
-      case R.id.tv:
+      case R.id.tv4:
+        // 传入的地址不对可能会导致报错，还有一点很重要，如果内核没有初始化完成，不能调用，否则不能使用。
+        PreviewAttachmentActivity.start(this, "在这里传入文件的地址，如果/storage/emulated/0/Download等");
+        break;
+      case R.id.tv5:
         QbSdk.openFileReader(
             this,
             "/sdcard/Android/data/com.jackfruit.tbsdemo/files/Documents/24049_预案公告.pdf",

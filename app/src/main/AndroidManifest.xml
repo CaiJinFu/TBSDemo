@@ -32,12 +32,16 @@
         <category android:name="android.intent.category.LAUNCHER" />
       </intent-filter>
     </activity>
+    <activity
+      android:name=".PreviewAttachmentActivity"
+      android:configChanges="orientation|keyboardHidden|screenSize"
+      />
 
     <service
-        android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
-        android:label="dexopt"
-        android:process=":dexopt" >
-    </service>
+      android:name="com.tencent.smtt.export.external.DexClassLoaderProviderService"
+      android:label="dexopt"
+      android:process=":dexopt"
+      ></service>
     <provider
       android:name="com.tencent.smtt.utils.FileProvider"
       android:authorities="${applicationId}.provider"

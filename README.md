@@ -150,6 +150,9 @@ android:process=":dexopt" >
 
 这个应该才是重点。
 
+#### 在APP内部打开文件
+APP内部打开使用的是TBS里面的TbsReaderView，在我Demo中有示例。可以看我的[TBSDemo](https://github.com/CaiJinFu/TBSDemo.git)
+
 #### 支持格式
 
 TBS已提供9种主流文件格式的本地打开，如果您需要使用更高级的能力请使用QQ浏览器打开文件
