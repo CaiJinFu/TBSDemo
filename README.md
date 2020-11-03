@@ -1,4 +1,7 @@
-# TBS腾讯浏览服务接入
+# 序言
+腾讯浏览服务功能强大，稳定，集成还算是比较简单的，比原生的webview强。最主要的是可以浏览PDF，Word文档，方便不少。此篇文章主要不是在讲集成，虽然集成的篇幅多些，但是我写的最重要的目的是我在实际使用过程中碰到的问题，以及解决方案。如果已经成功集成的了，可直接看其他问题，可能会有你想要的。
+
+### TBS腾讯浏览服务接入
 
 [TBS文档接入地址](https://x5.tencent.com/docs/access.html)
 
@@ -278,8 +281,31 @@ android:networkSecurityConfig="@xml/network_security_config"
 
 由于内核初始化需要时间，在这段时间里需要等待一会再打开文件浏览，否则会加载失败。假如出现加载失败，卸载重新安装。
 
-#### R8打包，无法加载
-使用R8打包的时候，发现虽然下载成功了，但是加载却是失败的。果断关闭了。
+#### 无法下载，或者加载不成功
+```java
+    QbSdk.setTbsListener(
+        new TbsListener() {
+          @Override
+          public void onDownloadFinish(int i) {
+            //下载结束时的状态，下载成功时errorCode为100,其他均为失败，外部不需要关注具体的失败原因
+            Log.d("QbSdk", "onDownloadFinish -->下载X5内核完成：" + i);
+          }
+
+          @Override
+          public void onInstallFinish(int i) {
+            //安装结束时的状态，安装成功时errorCode为200,其他均为失败，外部不需要关注具体的失败原因
+            Log.d("QbSdk", "onInstallFinish -->安装X5内核进度：" + i);
+          }
+
+          @Override
+          public void onDownloadProgress(int i) {
+            //下载过程的通知，提供当前下载进度[0-100]
+            Log.d("QbSdk", "onDownloadProgress -->下载X5内核进度：" + i);
+          }
+        });
+
+```
+上面是下载的监听，但是在实际中我经常发现onDownloadFinish返回是110，或者120等。官网上注明只有100是成功。只要不是100，则X5内核加载肯定是失败的。但是官网又没有说如何解决。没办法只能自己找出路。在十分艰难阅读了大部分带有混淆的TBS的jar包后，连猜带蒙的我找到了TbsDownloader.startDownload(this);这个方法。可以实现重现下载，但是如果只是重新下载了还是不一定能保证x5的加载是一定成功的。所以我又找到了QbSdk.reset(this);这个方法。可以重置x5的配置。kill掉APP后就会重新下载跟初始化。在实际线上的使用情况是十分复杂的，有的人还没等下载结束就把APPkill掉了，导致下载没完成，或者是下载完成加载没完成，所以只是使用TbsDownloader.startDownload(this);重新下载的话要结合QbSdk.setTbsListener里的回调，还有QbSdk.PreInitCallback的回调来综合判断。
 
 #### 混淆无法使用
 如果使用了混淆，则要加入以下混淆的规则

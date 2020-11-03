@@ -30,4 +30,15 @@
     android:textColor="@android:color/white"
     />
 
+  <TextView
+    android:id="@+id/tv3"
+    android:layout_width="100dp"
+    android:layout_height="50dp"
+    android:layout_marginTop="10dp"
+    android:background="@color/colorAccent"
+    android:gravity="center"
+    android:text="重启APP"
+    android:textColor="@android:color/white"
+    />
+
 </LinearLayout>
