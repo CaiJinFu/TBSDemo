@@ -308,7 +308,27 @@ android:networkSecurityConfig="@xml/network_security_config"
         });
 
 ```
-上面是下载的监听，但是在实际中我经常发现onDownloadFinish返回是110，或者120等。官网上注明只有100是成功。只要不是100，则X5内核加载肯定是失败的。但是官网又没有说如何解决。没办法只能自己找出路。在十分艰难阅读了大部分带有混淆的TBS的jar包后，连猜带蒙的我找到了TbsDownloader.startDownload(this);这个方法。可以实现重现下载，但是如果只是重新下载了还是不一定能保证x5的加载是一定成功的。所以我又找到了QbSdk.reset(this);这个方法。可以重置x5的配置。kill掉APP后就会重新下载跟初始化。在实际线上的使用情况是十分复杂的，有的人还没等下载结束就把APPkill掉了，导致下载没完成，或者是下载完成加载没完成，所以只是使用TbsDownloader.startDownload(this);重新下载的话要结合QbSdk.setTbsListener里的回调，还有QbSdk.PreInitCallback的回调来综合判断。
+上面是下载的监听，但是在实际中我经常发现onDownloadFinish返回是110，或者120等。官网上注明只有100是成功。只要不是100，则X5内核加载肯定是失败的。但是官网又没有说如何解决。没办法只能自己找出路。在十分艰难阅读了大部分带有混淆的TBS的jar包后，连猜带蒙的我找到了TbsDownloader.startDownload(this);这个方法。可以实现重新下载，但是如果只是重新下载了还是不一定能保证x5的加载是一定成功的。所以我又找到了QbSdk.reset(this);这个方法。可以重置x5的配置。kill掉APP后就会重新下载跟初始化。在实际线上的使用情况是十分复杂的，有的人还没等下载结束就把APPkill掉了，导致下载没完成，或者是下载完成加载没完成，所以只是使用TbsDownloader.startDownload(this);重新下载的话要结合QbSdk.setTbsListener里的回调，还有QbSdk.PreInitCallback的回调来综合判断。
+
+```java
+    QbSdk.PreInitCallback cb =
+        new QbSdk.PreInitCallback() {
+          @Override
+          public void onViewInitFinished(boolean arg0) {
+            // x5內核初始化完成的回调，true表x5内核加载成功，否则表加载失败，会自动切换到系统内核。
+            Log.d("QbSdk", " 内核加载 " + arg0);
+          }
+
+          @Override
+          public void onCoreInitFinished() {
+            //内核初始化完毕
+            Log.d("QbSdk", "内核初始化完毕");
+          }
+        };
+
+```
+
+QbSdk.reset(this);是最好的方法，简单粗暴。可以查看我的demo，里面有我认为比较好的解决方法。当然还是得根据自身的需求要使用。
 
 #### 混淆无法使用
 如果使用了混淆，则要加入以下混淆的规则
