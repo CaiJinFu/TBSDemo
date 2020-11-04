@@ -153,14 +153,16 @@ android:process=":dexopt" >
 #### 在APP内部打开文件
 APP内部打开使用的是TBS里面的TbsReaderView，在我Demo中有示例。可以看我的[TBSDemo](https://github.com/CaiJinFu/TBSDemo.git)
 
-#### 支持格式
+#### 使用TBS的openFileReader打开文件
+
+##### 支持格式
 
 TBS已提供9种主流文件格式的本地打开，如果您需要使用更高级的能力请使用QQ浏览器打开文件
 
 - 接入TBS可支持打开文件格式：`doc、docx、ppt、pptx、xls、xlsx、pdf、txt、epub`
 - 调用QQ浏览器可打开：`rar（包含加密格式）、zip（包含加密格式）、tar、bz2、gz、7z（包含加密格式）、doc、docx、ppt、pptx、xls、xlsx、txt、pdf、epub、chm、html/htm、xml、mht、url、ini、log、bat、php、js、lrc、jpg、jpeg、png、gif、bmp、tiff 、webp、mp3、m4a、aac、amr、wav、ogg、mid、ra、wma、mpga、ape、flac`
 
-#### 接口介绍
+##### 接口介绍
 
 ```Java
 public static int openFileReader(
@@ -201,7 +203,7 @@ public static void closeFileReader(Context context)
 
 主动关闭文件打开ui,并清理相应内存占用。
 
-#### 接入示例
+##### 接入示例
 
 ```java
 HashMap<String, String> params = new HashMap<String, String>(); 
