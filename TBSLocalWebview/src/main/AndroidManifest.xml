@@ -3,59 +3,14 @@
   xmlns:android="http://schemas.android.com/apk/res/android"
   package="com.jackfruit.tbslocalwebview"
   >
-  <!-- 接收PUSH TOKEN的广播以及PUSH消息需要定义该权限 ${PACKAGE_NAME} 要替换上您应用的包名 -->
-  <permission
-    android:name="${applicationId}.permission.PROCESS_PUSH_MSG"
-    android:protectionLevel="signatureOrSystem"
-    /> <!-- 小米 配置开始 < -->
-  <permission
-    android:name="${applicationId}.permission.MIPUSH_RECEIVE"
-    android:protectionLevel="signature"
-    />
-  <uses-permission android:name="${applicationId}.permission.MIPUSH_RECEIVE" /> <!-- 小米 配置结束 < -->
-  <!--前台服务，需要添加权限-->
-  <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
-  <!-- 百度身份识别识别 -->
-  <uses-feature android:name="android.hardware.camera2.full" />
 
-  <uses-permission android:name="android.permission.REQUEST_INSTALL_PACKAGES" />
-  <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
   <!-- 写入扩展存储，向扩展卡写入数据-->
   <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-  <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-  <uses-permission android:name="android.permission.READ_CONTACTS" />
-  <uses-permission android:name="android.permission.CALL_PHONE" />
-  <uses-permission android:name="android.permission.CAMERA" />
-  <uses-permission android:name="android.permission.BLUETOOTH" />
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-  <uses-permission android:name="android.permission.SYSTEM_OVERLAY_WINDOW" />
-  <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
   <!-- 访问网络，网络定位需要上网-->
   <uses-permission android:name="android.permission.INTERNET" />
-  <uses-permission android:name="android.permission.WAKE_LOCK" />
-  <uses-permission android:name="android.permission.VIBRATE" /> <!-- 震动权限 -->
    <!-- 获取运营商信息，用于支持提供运营商信息相关的接口-->
   <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-  <uses-permission android:name="android.permission.WRITE_SETTINGS" />
-  <!-- 用于访问wifi网络信息，wifi信息会用于进行网络定位-->
-  <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-  <!-- 这个权限用于访问GPS定位-->
-  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-  <!-- 这个权限用于进行网络定位-->
-  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
-  <uses-permission android:name="android.permission.GET_TASKS" />
-  <!-- 这个权限用于获取wifi的获取权限，wifi信息会用来进行网络定位-->
-  <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
-  <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
-  <!--允许程序改变网络连接状态 -->
-  <uses-permission android:name="android.permission.CHANGE_NETWORK_STATE" />
-  <uses-feature android:name="android.hardware.camera" /> <!-- 使用照相机权限 -->
-  <uses-feature android:name="android.hardware.camera.autofocus" /> <!-- 自动聚焦权限 -->
-  <!-- 融云权限 -->
-  <uses-permission android:name="android.permission.RECORD_AUDIO" />
-  <uses-permission android:name="android.permission.MODIFY_AUDIO_SETTINGS" />
-  <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
-  <uses-permission android:name="com.huawei.android.launcher.permission.CHANGE_BADGE" /> <!-- 需要申明的权限 -->
   <application
     android:allowBackup="true"
     android:icon="@mipmap/ic_launcher"
