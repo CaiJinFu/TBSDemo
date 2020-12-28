@@ -263,6 +263,16 @@ QbSdk: Must declare com.tencent.smtt.utils.FileProvider in AndroidManifest above
 
 ### 其他问题
 
+#### 使用TbsReaderView浏览文件夜间模式问题
+我在使用小米10至尊版的时候，我的APP中没有适配深黑模式，使用的主题是Theme.AppCompat.Light.NoActionBar，但是小米10还是强制性的把我的APP使用了深黑模式。并且我发现，不止是我的APP，而是我手机上所有的APP都是如此，不管有没有适配，都使用了深黑模式，也就是夜间模式。这就导致了一个问题，使用TbsReaderView来浏览文件的时候，背景是黑色的，字体的颜色也是有点黑，导致文档看的不清楚，后来我在阅读TbsReaderView源码的时候，发现可以设置强制不使用夜间模式。加入以下代码即可。
+
+```java
+if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      //不使用黑暗模式
+      mTbsReaderView.setForceDarkAllowed(false);
+    }
+```
+
 #### targetAPI为29时
 
 如果Android的targetSdkVersion是29的话，需要在application下面配置android:requestLegacyExternalStorage="true"
