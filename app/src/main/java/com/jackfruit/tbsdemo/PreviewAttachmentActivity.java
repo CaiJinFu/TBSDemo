@@ -3,12 +3,16 @@ package com.jackfruit.tbsdemo;
 import android.content.Context;
 import android.content.Intent;
 import android.content.res.Configuration;
+import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.Surface;
 import android.widget.RelativeLayout;
+
 import androidx.appcompat.app.AppCompatActivity;
+
 import com.tencent.smtt.sdk.TbsReaderView;
+
 import java.io.File;
 
 public class PreviewAttachmentActivity extends AppCompatActivity {
@@ -49,6 +53,10 @@ public class PreviewAttachmentActivity extends AppCompatActivity {
         mTbsReaderView,
         new RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
+    if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+      //不使用黑暗模式
+      mTbsReaderView.setForceDarkAllowed(false);
+    }
     String extensionName = FileUtils.getFileType(mFile.getPath());
     Bundle bundle = new Bundle();
     bundle.putString(TbsReaderView.KEY_FILE_PATH, mFile.getPath());
