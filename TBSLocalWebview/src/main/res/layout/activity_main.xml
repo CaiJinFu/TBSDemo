@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+  xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:gravity="center"
+  android:orientation="vertical"
+  tools:context=".MainActivity"
+  >
+
+  <TextView
+    android:id="@+id/tv"
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:background="@color/design_default_color_error"
+    android:gravity="center"
+    android:text="打开调试"
+    android:onClick="openDebug"
+    android:textColor="@color/white"
+    />
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="50dp"
+    android:background="@color/design_default_color_error"
+    android:gravity="center"
+    android:text="查看PDF文件"
+    android:textColor="@color/white"
+    android:onClick="openPdfFile"
+    />
+
+  <TextView
+    android:layout_width="match_parent"
+    android:layout_height="50dp"
+    android:layout_marginTop="50dp"
+    android:background="@color/design_default_color_error"
+    android:gravity="center"
+    android:text="查看DOX文件"
+    android:textColor="@color/white"
+    android:onClick="openDoxFile"
+    />
+
+</LinearLayout>

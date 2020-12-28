@@ -1,2 +1,3 @@
+include ':TBSLocalWebview'
 include ':app'
 rootProject.name = "TBSDemo"
