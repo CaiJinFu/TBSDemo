@@ -36,7 +36,7 @@ public class PreviewAttachmentActivity extends AppCompatActivity {
   @Override
   protected void onCreate(Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    setContentView(R.layout.activity_main);
+    setContentView(R.layout.activity_preview_attachment);
     initView();
     String fileUrl = getIntent().getStringExtra("fileUrl");
     mFile = new File(fileUrl);
